@@ -1,19 +1,26 @@
 import { ItemTypes } from "../DnD/ItemsType";
 import { useDrag } from "react-dnd";
-export const Knight = () => {
+import { useState } from "react";
+export const Knight = ({ x, y }) => {
+  const [positions, setPositions] = useState([]);
+
   // drag操作
   // useDragの引数
   // type（dragするitemの指定）、collect（）
-  const [{ isDragging, canDrag }, drag] = useDrag(() => ({
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.KNIGHT,
+    end: (_, monitor) => {
+      const dropResult = monitor.getDropResult();
+
+      setPositions([...positions, dropResult]);
+    },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
-      canDrag: monitor.canDrag(),
     }),
   }));
-
-  console.log(`[drag]isDragging:${isDragging}`);
-  console.log(`[drag]canDrag:${canDrag}`);
+  console.log(positions);
+  // console.log(`[drag]isDragging:${isDragging}`);
+  // console.log(`[drag]canDrag:${canDrag}`);
 
   return (
     <span

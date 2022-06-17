@@ -5,7 +5,7 @@ export const renderSquare = (i, knightPosition) => {
   const y = Math.floor(i / 8);
   const renderPiece = (x, y, [knightX, knightY]) => {
     if (x === knightX && y === knightY) {
-      return <Knight />;
+      return <Knight x={x} y={y} />;
     }
   };
 
