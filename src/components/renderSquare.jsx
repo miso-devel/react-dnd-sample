@@ -9,9 +9,8 @@ export const renderSquare = (i, [knightX, knightY]) => {
   const piece = isKnightHere ? <Knight /> : null;
   const handleSquareClick = (toX, toY) => {
     console.log(toX, toY);
-    if (canMoveKnight(toX, toY)) {
-      moveKnight(toX, toY);
-    }
+
+    moveKnight(toX, toY);
   };
   return (
     <div key={i} style={{ width: "12.5%", height: "12.5%" }}>
